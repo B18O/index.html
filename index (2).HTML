@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hacked By B1</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            cursor: default;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .image-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .text {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            font-size: 18px;
+            white-space: nowrap;
+            animation: moveText 15s linear infinite;
+            width: 100%;
+            text-align: center;
+        }
+
+        @keyframes moveText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .button-container {
+            margin: 20px 0;
+        }
+
+        .button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #444;
+        }
+
+        .custom-cursor {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="font-size: 20px;"><text y="18">👆</text></svg>'), auto;
+        }
+
+        .youtube-player {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="https://i.gifer.com/7A16.gif" alt="Hacked Image">
+        </div>
+
+        <div class="text">
+            Hacked By B1
+        </div>
+
+        <div class="button-container">
+            <button class="button" id="playButton">Play</button>
+            <button class="button" id="stopButton">Stop</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        [ Made By B1 ]
+    </div>
+
+    <iframe 
+        id="youtubePlayer"
+        class="youtube-player"
+        width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/Dyktg0fPnsk?enablejsapi=1&autoplay=0" 
+        allow="autoplay; encrypted-media"
+        frameborder="0"
+    ></iframe>
+
+    <script>
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubePlayer', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            console.log('Player is ready');
+        }
+
+        function onPlayerStateChange(event) {
+            console.log('Player state changed');
+        }
+
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        const playButton = document.getElementById('playButton');
+        const stopButton = document.getElementById('stopButton');
+        const body = document.body;
+
+        playButton.addEventListener('mouseenter', () => {
+            body.classList.add('custom-cursor');
+        });
+
+        playButton.addEventListener('mouseleave', () => {
+            body.classList.remove('custom-cursor');
+        });
+
+        playButton.addEventListener('click', function() {
+            if (player) {
+                player.playVideo();
+                console.log('Playing video');
+            }
+        });
+
+        stopButton.addEventListener('click', function() {
+            if (player) {
+                player.stopVideo();
+                console.log('Stopping video');
+            }
+        });
+    </script>
+</body>
+</html>
